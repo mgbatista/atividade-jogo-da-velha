@@ -13,7 +13,8 @@ namespace JogoDaVelha
             char[,] tabuleiro = new char[3, 3];
             int linhaj1, linhaj2, colunaj1, colunaj2;
             bool podecolocarpeca = false;
-            char resultadodojogo = '0';
+            char resultadodojogo;
+            
 
             for (int i = 0; i < 3; i++)
             {
@@ -26,46 +27,53 @@ namespace JogoDaVelha
 
             do
             {
-                do
+                    do
+                    {
+                        Console.WriteLine("Jogador 1, informe a posição que deseja (linha e coluna): ");
+                        Console.Write("Linha: ");
+                        linhaj1 = int.Parse(Console.ReadLine());
+                        Console.Write("Coluna: ");
+                        colunaj1 = int.Parse(Console.ReadLine());
+                        podecolocarpeca = posicao_disponivel(tabuleiro, linhaj1, colunaj1);
+                    } while (podecolocarpeca == false);
+                    {
+                        tabuleiro[linhaj1, colunaj1] = 'X';
+                        imprimir_Jogo(tabuleiro);
+                        resultadodojogo = verifica_Status(tabuleiro);
+                        // funções que testam e imprimem o jogo
+                    }
+                
+                if(verifica_Status(tabuleiro) != '1' && verifica_Status(tabuleiro) != '0')
                 {
-                    Console.WriteLine("Jogador 1, informe a posição que deseja (linha e coluna): ");
-                    Console.Write("Linha: ");
-                    linhaj1 = int.Parse(Console.ReadLine());
-                    Console.Write("Coluna: ");
-                    colunaj1 = int.Parse(Console.ReadLine());
-                    podecolocarpeca = posicao_disponivel(tabuleiro, linhaj1, colunaj1);
-                } while (podecolocarpeca == false);
-                {
-                    tabuleiro[linhaj1, colunaj1] = 'X';
-                    imprimir_Jogo(tabuleiro);
-                    resultadodojogo = verifica_Status(tabuleiro);
-                    // funções que testam e imprimem o jogo
+                    do
+                    {
+                        Console.WriteLine("\nJogador 2, informe a posição que deseja (linha e coluna): ");
+                        Console.Write("Linha: ");
+                        linhaj2 = int.Parse(Console.ReadLine());
+                        Console.Write("Coluna: ");
+                        colunaj2 = int.Parse(Console.ReadLine());
+                        podecolocarpeca = posicao_disponivel(tabuleiro, linhaj2, colunaj2);
+                    } while (podecolocarpeca == false);
+                    {
+                        tabuleiro[linhaj2, colunaj2] = 'O';
+                        imprimir_Jogo(tabuleiro);
+                        resultadodojogo = verifica_Status(tabuleiro);
+                        // funções que testam e imprimem o jogo
+                    }
                 }
-
-                do
-                {
-                    Console.WriteLine("\nJogador 2, informe a posição que deseja (linha e coluna): ");
-                    Console.Write("Linha: ");
-                    linhaj2 = int.Parse(Console.ReadLine());
-                    Console.Write("Coluna: ");
-                    colunaj2 = int.Parse(Console.ReadLine());
-                    podecolocarpeca = posicao_disponivel(tabuleiro, linhaj2, colunaj2);
-                } while (podecolocarpeca == false);
-                {
-                    tabuleiro[linhaj2, colunaj2] = 'O';
-                    imprimir_Jogo(tabuleiro);
-                    resultadodojogo = verifica_Status(tabuleiro);
-                    // funções que testam e imprimem o jogo
-                }
-            } while (verifica_Status(tabuleiro) == '0'); //jogo finalizado
+                
+            } while (verifica_Status(tabuleiro) != '1' && verifica_Status(tabuleiro) != '2' && verifica_Status(tabuleiro) != '0'); //jogo finalizado
 
             if (resultadodojogo == '1')
             {
                 Console.WriteLine("O jogador 1 venceu!");
             }
-            else
+            else if (resultadodojogo == '2')
             {
                 Console.WriteLine("O jogador 2 venceu!");
+            } else if (resultadodojogo == '0')
+            {
+                Console.WriteLine("O jogo Empatou!");
             }
             Console.ReadKey();
 
@@ -95,74 +103,79 @@ namespace JogoDaVelha
         }
         static char verifica_Status(char[,] matriz)
         {
-            if (matriz[0, 0] == 'X' && matriz[0, 0] == matriz[0, 1] && matriz[0, 0] == matriz[0, 2]) //
+            if (matriz[0, 0] == 'X' && matriz[0, 0] == matriz[0, 1] && matriz[0, 0] == matriz[0, 2]) 
             {
-                return ('1');
+                return ('1'); // 1
             }
-            else if (matriz[0, 0] == 'X' && matriz[0, 0] == matriz[1, 0] && matriz[0, 0] == matriz[2, 0]) //
+            else if (matriz[0, 0] == 'X' && matriz[0, 0] == matriz[1, 0] && matriz[0, 0] == matriz[2, 0]) 
             {
-                return ('1');
+                return ('1'); // 1
             }
             else if (matriz[0, 0] == 'X' && matriz[0, 0] == matriz[1, 1] && matriz[0, 0] == matriz[2, 2])
             {
-                return ('1');
+                return ('1'); // 1
             }
             else if (matriz[1, 0] == 'X' && matriz[1, 0] == matriz[1, 1] && matriz[1, 0] == matriz[1, 2])
             {
-                return ('1');
+                return ('1'); // 1
             }
             else if (matriz[2, 0] == 'X' && matriz[2, 0] == matriz[2, 1] && matriz[2, 0] == matriz[2, 2])
             {
-                return ('1');
+                return ('1'); // 1
             }
             else if (matriz[2, 0] == 'X' && matriz[2, 0] == matriz[1, 1] && matriz[2, 0] == matriz[0, 2])
             {
-                return ('1');
+                return ('1'); // 1
             }
             else if (matriz[0, 1] == 'X' && matriz[0, 1] == matriz[1, 1] && matriz[0, 1] == matriz[2, 1])
             {
-                return ('1');
+                return ('1'); // 1
             }
             else if (matriz[0, 2] == 'X' && matriz[0, 2] == matriz[1, 2] && matriz[0, 2] == matriz[2, 2])
             {
-                return ('1');
+                return ('1'); // 1
             }
             else if (matriz[0, 0] == 'O' && matriz[0, 0] == matriz[0, 1] && matriz[0, 0] == matriz[0, 2])
             {
-                return ('2');
+                return ('2'); // 2
             }
             else if (matriz[0, 0] == 'O' && matriz[0, 0] == matriz[1, 0] && matriz[0, 0] == matriz[2, 0])
             {
-                return ('2');
+                return ('2'); // 2
             }
             else if (matriz[0, 0] == 'O' && matriz[0, 0] == matriz[1, 1] && matriz[0, 0] == matriz[2, 2])
             {
-                return ('2');
+                return ('2'); // 2
             }
             else if (matriz[1, 0] == 'O' && matriz[1, 0] == matriz[1, 1] && matriz[1, 0] == matriz[1, 2])
             {
-                return ('2');
+                return ('2'); // 2
             }
             else if (matriz[2, 0] == 'O' && matriz[2, 0] == matriz[2, 1] && matriz[2, 0] == matriz[2, 2])
             {
-                return ('2');
+                return ('2'); // 2
             }
             else if (matriz[2, 0] == 'O' && matriz[2, 0] == matriz[1, 1] && matriz[2, 0] == matriz[0, 2])
             {
-                return ('2');
+                return ('2'); // 2
             }
             else if (matriz[0, 1] == 'O' && matriz[0, 1] == matriz[1, 1] && matriz[0, 1] == matriz[2, 1])
             {
-                return ('2');
+                return ('2'); // 2
             }
             else if (matriz[0, 2] == 'O' && matriz[0, 2] == matriz[1, 2] && matriz[0, 2] == matriz[2, 2])
             {
-                return ('2');
-            }
-            else
+                return ('2'); // 2
+            }else if(matriz[0,0] != '-' && matriz[0,1] != '-' && matriz[0,2] != '-' && matriz[1,0] != '-' && matriz[1,1] != '-' && matriz[1,2] != '-' && matriz[2,0] != '-' && matriz[2,1] != '-' && matriz[2,2] != '-')
             {
                 return ('0');
             }
+            else
+            {
+                return ('3');
+            }
+
+
         }
     }
 }
