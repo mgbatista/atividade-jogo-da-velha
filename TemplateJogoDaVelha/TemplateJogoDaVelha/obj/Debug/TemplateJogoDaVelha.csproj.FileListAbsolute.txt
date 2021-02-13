@@ -1,0 +1,7 @@
+C:\Users\maiar\source\repos\mgbatista\atividade-jogo-da-velha\TemplateJogoDaVelha\TemplateJogoDaVelha\bin\Debug\TemplateJogoDaVelha.exe.config
+C:\Users\maiar\source\repos\mgbatista\atividade-jogo-da-velha\TemplateJogoDaVelha\TemplateJogoDaVelha\bin\Debug\TemplateJogoDaVelha.exe
+C:\Users\maiar\source\repos\mgbatista\atividade-jogo-da-velha\TemplateJogoDaVelha\TemplateJogoDaVelha\bin\Debug\TemplateJogoDaVelha.pdb
+C:\Users\maiar\source\repos\mgbatista\atividade-jogo-da-velha\TemplateJogoDaVelha\TemplateJogoDaVelha\obj\Debug\TemplateJogoDaVelha.csprojAssemblyReference.cache
+C:\Users\maiar\source\repos\mgbatista\atividade-jogo-da-velha\TemplateJogoDaVelha\TemplateJogoDaVelha\obj\Debug\TemplateJogoDaVelha.csproj.CoreCompileInputs.cache
+C:\Users\maiar\source\repos\mgbatista\atividade-jogo-da-velha\TemplateJogoDaVelha\TemplateJogoDaVelha\obj\Debug\TemplateJogoDaVelha.exe
+C:\Users\maiar\source\repos\mgbatista\atividade-jogo-da-velha\TemplateJogoDaVelha\TemplateJogoDaVelha\obj\Debug\TemplateJogoDaVelha.pdb
