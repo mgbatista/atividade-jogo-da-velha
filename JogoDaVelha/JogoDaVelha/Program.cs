@@ -14,6 +14,7 @@ namespace JogoDaVelha
             int linhaj1, linhaj2, colunaj1, colunaj2;
             bool podecolocarpeca = false;
             char resultadodojogo;
+            string nomejog1, nomejog2;
 
 
             for (int i = 0; i < 3; i++)
@@ -24,17 +25,41 @@ namespace JogoDaVelha
                 }
             }
 
+            Console.WriteLine(">>> JOGO DA VELHA <<<\n");
+            Console.WriteLine("Informe o nome dos jogadores:\n");
+            Console.Write("Jogador 1: ");
+            nomejog1 = Console.ReadLine();
+            Console.Write("Jogador 2: ");
+            nomejog2 = Console.ReadLine();
+
 
             do
             {
                     do
                     {
-                        Console.WriteLine("Jogador 1, informe a posição que deseja (linha e coluna): ");
-                        Console.Write("Linha: ");
-                        linhaj1 = int.Parse(Console.ReadLine());
-                        Console.Write("Coluna: ");
-                        colunaj1 = int.Parse(Console.ReadLine());
+                        Console.WriteLine("\n" + nomejog1 + ", informe a posição que deseja (linha e coluna) OBS: As coordenas vão de 0 à 2!!: \n");
+                        do
+                        {
+                            Console.Write("Linha: ");
+                            linhaj1 = int.Parse(Console.ReadLine());
+                            if (linhaj1 != 0 && linhaj1 != 1 && linhaj1 != 2)
+                            {
+                                Console.WriteLine("As coordenadas precisam ser 0, 1 ou 2!!");
+                            }
+                        } while (linhaj1 != 0 && linhaj1 != 1 && linhaj1 != 2);
+
+                        do
+                        {
+                            Console.Write("Coluna: ");
+                            colunaj1 = int.Parse(Console.ReadLine());
+                            if (colunaj1 != 0 && colunaj1 != 1 && colunaj1 != 2)
+                            {
+                                Console.WriteLine("As coordenadas precisam ser 0, 1 ou 2!!");
+                            }
+
+                        } while (colunaj1 != 0 && colunaj1 != 1 && colunaj1 != 2);
                         podecolocarpeca = posicao_disponivel(tabuleiro, linhaj1, colunaj1);
+
                     } while (podecolocarpeca == false);
                     {
                         tabuleiro[linhaj1, colunaj1] = 'X';
@@ -47,11 +72,26 @@ namespace JogoDaVelha
                 {
                     do
                     {
-                        Console.WriteLine("Jogador 2, informe a posição que deseja (linha e coluna): ");
-                        Console.Write("Linha: ");
-                        linhaj2 = int.Parse(Console.ReadLine());
-                        Console.Write("Coluna: ");
-                        colunaj2 = int.Parse(Console.ReadLine());
+                        Console.WriteLine(nomejog2 + ", informe a posição que deseja (linha e coluna): ");
+                        do
+                        {
+                            Console.Write("Linha: ");
+                            linhaj2 = int.Parse(Console.ReadLine());
+                            if (linhaj2 != 0 && linhaj2 != 1 && linhaj2 != 2)
+                            {
+                                Console.WriteLine("As coordenadas precisam ser 0, 1 ou 2!!");
+                            }
+                        } while (linhaj2 != 0 && linhaj2 != 1 && linhaj2 != 2);
+
+                        do
+                        {
+                            Console.Write("Coluna: ");
+                            colunaj2 = int.Parse(Console.ReadLine());
+                            if (colunaj2 != 0 && colunaj2 != 1 && colunaj2 != 2)
+                            {
+                                Console.WriteLine("As coordenadas precisam ser 0, 1 ou 2!!");
+                            }
+                        } while (colunaj2 != 0 && colunaj2 != 1 && colunaj2 != 2);
                         podecolocarpeca = posicao_disponivel(tabuleiro, linhaj2, colunaj2);
                     } while (podecolocarpeca == false);
                     {
@@ -67,13 +107,13 @@ namespace JogoDaVelha
             if (resultadodojogo == '1')
             {
                 Console.WriteLine("\n******************************************");
-                Console.WriteLine("\nO jogador 1 venceu!");
+                Console.WriteLine("\n" + nomejog1 + " venceu!");
                 Console.WriteLine("\nPressione qualquer tecla para sair...");
             }
             else if (resultadodojogo == '2')
             {
                 Console.WriteLine("\n******************************************");
-                Console.WriteLine("\nO jogador 2 venceu!");
+                Console.WriteLine("\n" + nomejog2 + " venceu!");
                 Console.WriteLine("\nPressione qualquer tecla para sair...");
             } else if (resultadodojogo == '0')
             {
