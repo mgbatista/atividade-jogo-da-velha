@@ -27,72 +27,165 @@ namespace JogoDaVelha
 
             Console.WriteLine(">>> JOGO DA VELHA <<<\n");
             Console.WriteLine("Informe o nome dos jogadores:\n");
-            Console.Write("Jogador 1: ");
+            Console.Write("Jogador 1 (será representado por 'X'): ");
             nomejog1 = Console.ReadLine();
-            Console.Write("Jogador 2: ");
+            Console.Write("Jogador 2 (será representado por 'O'): ");
             nomejog2 = Console.ReadLine();
-
 
             do
             {
+                do
+                {
+                    Console.WriteLine("\n" + nomejog1 + ", informe a posição que deseja (linha e coluna) OBS: As coordenadas vão de 0 à 2!!: \n");
                     do
                     {
-                        Console.WriteLine("\n" + nomejog1 + ", informe a posição que deseja (linha e coluna) OBS: As coordenas vão de 0 à 2!!: \n");
-                        do
+                        Console.Write("Linha: ");
+
+                        int number;
+                        var linhatemp = Console.ReadLine();
+                        bool valorValido = Int32.TryParse(linhatemp, out number);
+                        linhaj1 = 0;
+                        while (!valorValido)
                         {
+                            Console.WriteLine("As coordenadas precisam ser 0, 1 ou 2!!");
                             Console.Write("Linha: ");
-                            linhaj1 = int.Parse(Console.ReadLine());
+                            var novoNumero = Console.ReadLine();
+                            valorValido = Int32.TryParse(novoNumero, out number);
+
+                            if (valorValido)
+                            {
+                                linhaj1 = int.Parse(novoNumero);
+                            }
+
                             if (linhaj1 != 0 && linhaj1 != 1 && linhaj1 != 2)
                             {
-                                Console.WriteLine("As coordenadas precisam ser 0, 1 ou 2!!");
+                                valorValido = false;
                             }
-                        } while (linhaj1 != 0 && linhaj1 != 1 && linhaj1 != 2);
+                            linhatemp = novoNumero;
+                        }
 
-                        do
+                        linhaj1 = int.Parse(linhatemp);
+                        if (linhaj1 != 0 && linhaj1 != 1 && linhaj1 != 2)
                         {
+                            Console.WriteLine("As coordenadas precisam ser 0, 1 ou 2!!");
+                        }
+                    } while (linhaj1 != 0 && linhaj1 != 1 && linhaj1 != 2);
+
+                    do
+                    {
+                        Console.Write("Coluna: ");
+
+                        int number;
+                        var colunatemp = Console.ReadLine();
+                        bool valorValido = Int32.TryParse(colunatemp, out number);
+                        colunaj1 = 0;
+                        while (!valorValido)
+                        {
+                            Console.WriteLine("As coordenadas precisam ser 0, 1 ou 2!!");
                             Console.Write("Coluna: ");
-                            colunaj1 = int.Parse(Console.ReadLine());
+                            var novoNumero = Console.ReadLine();
+                            valorValido = Int32.TryParse(novoNumero, out number);
+
+                            if (valorValido)
+                            {
+                                colunaj1 = int.Parse(novoNumero);
+                            }
+
                             if (colunaj1 != 0 && colunaj1 != 1 && colunaj1 != 2)
                             {
-                                Console.WriteLine("As coordenadas precisam ser 0, 1 ou 2!!");
+                                valorValido = false;
                             }
+                            colunatemp = novoNumero;
+                        }
+                        colunaj1 = int.Parse(colunatemp);
+                        if (colunaj1 != 0 && colunaj1 != 1 && colunaj1 != 2)
+                        {
+                            Console.WriteLine("As coordenadas precisam ser 0, 1 ou 2!!");
+                        }
 
-                        } while (colunaj1 != 0 && colunaj1 != 1 && colunaj1 != 2);
-                        podecolocarpeca = posicao_disponivel(tabuleiro, linhaj1, colunaj1);
+                    } while (colunaj1 != 0 && colunaj1 != 1 && colunaj1 != 2);
+                    podecolocarpeca = posicao_disponivel(tabuleiro, linhaj1, colunaj1);
 
-                    } while (podecolocarpeca == false);
-                    {
-                        tabuleiro[linhaj1, colunaj1] = 'X';
-                        imprimir_Jogo(tabuleiro);
-                        resultadodojogo = verifica_Status(tabuleiro);
-                    }
-                
+                } while (podecolocarpeca == false);
+                {
+                    tabuleiro[linhaj1, colunaj1] = 'X';
+                    imprimir_Jogo(tabuleiro);
+                    resultadodojogo = verifica_Status(tabuleiro);
+                }
 
-                if(verifica_Status(tabuleiro) != '1' && verifica_Status(tabuleiro) != '0')
+                if (verifica_Status(tabuleiro) != '1' && verifica_Status(tabuleiro) != '0')
                 {
                     do
                     {
-                        Console.WriteLine(nomejog2 + ", informe a posição que deseja (linha e coluna): ");
+                        Console.WriteLine("\n" + nomejog2 + ", informe a posição que deseja (linha e coluna) OBS: As coordenadas vão de 0 à 2!!: \n");
                         do
                         {
                             Console.Write("Linha: ");
-                            linhaj2 = int.Parse(Console.ReadLine());
+                            int number;
+                            var linhatemp = Console.ReadLine();
+                            bool valorValido = Int32.TryParse(linhatemp, out number);
+                            linhaj2 = 0;
+                            while (!valorValido)
+                            {
+                                Console.WriteLine("As coordenadas precisam ser 0, 1 ou 2!!");
+                                Console.Write("Linha: ");
+                                var novoNumero = Console.ReadLine();
+                                valorValido = Int32.TryParse(novoNumero, out number);
+
+                                if (valorValido)
+                                {
+                                    linhaj2 = int.Parse(novoNumero);
+                                }
+
+                                if (linhaj2 != 0 && linhaj2 != 1 && linhaj2 != 2)
+                                {
+                                    valorValido = false;
+                                }
+                                linhatemp = novoNumero;
+                            }
+
+                            linhaj2 = int.Parse(linhatemp);
                             if (linhaj2 != 0 && linhaj2 != 1 && linhaj2 != 2)
                             {
                                 Console.WriteLine("As coordenadas precisam ser 0, 1 ou 2!!");
                             }
+
                         } while (linhaj2 != 0 && linhaj2 != 1 && linhaj2 != 2);
 
                         do
                         {
                             Console.Write("Coluna: ");
-                            colunaj2 = int.Parse(Console.ReadLine());
+                            int number;
+                            var colunatemp = Console.ReadLine();
+                            bool valorValido = Int32.TryParse(colunatemp, out number);
+                            colunaj2 = 0;
+                            while (!valorValido)
+                            {
+                                Console.WriteLine("As coordenadas precisam ser 0, 1 ou 2!!");
+                                Console.Write("Coluna: ");
+                                var novoNumero = Console.ReadLine();
+                                valorValido = Int32.TryParse(novoNumero, out number);
+
+                                if (valorValido)
+                                {
+                                    colunaj2 = int.Parse(novoNumero);
+                                }
+
+                                if (colunaj2 != 0 && colunaj2 != 1 && colunaj2 != 2)
+                                {
+                                    valorValido = false;
+                                }
+                                colunatemp = novoNumero;
+                            }
+                            colunaj2 = int.Parse(colunatemp);
                             if (colunaj2 != 0 && colunaj2 != 1 && colunaj2 != 2)
                             {
                                 Console.WriteLine("As coordenadas precisam ser 0, 1 ou 2!!");
                             }
+
                         } while (colunaj2 != 0 && colunaj2 != 1 && colunaj2 != 2);
                         podecolocarpeca = posicao_disponivel(tabuleiro, linhaj2, colunaj2);
+
                     } while (podecolocarpeca == false);
                     {
                         tabuleiro[linhaj2, colunaj2] = 'O';
@@ -100,7 +193,7 @@ namespace JogoDaVelha
                         resultadodojogo = verifica_Status(tabuleiro);
                     }
                 }
-                
+
             } while (verifica_Status(tabuleiro) != '1' && verifica_Status(tabuleiro) != '2' && verifica_Status(tabuleiro) != '0'); //jogo finalizado
 
 
@@ -115,15 +208,17 @@ namespace JogoDaVelha
                 Console.WriteLine("\n******************************************");
                 Console.WriteLine("\n" + nomejog2 + " venceu!");
                 Console.WriteLine("\nPressione qualquer tecla para sair...");
-            } else if (resultadodojogo == '0')
+            }
+            else if (resultadodojogo == '0')
             {
                 Console.WriteLine("\n******************************************");
                 Console.WriteLine("\nO jogo Empatou!");
                 Console.WriteLine("\nPressione qualquer tecla para sair...");
             }
             Console.ReadKey();
-
         }
+
+
         static void imprimir_Jogo(char[,] matriz)
         {
             Console.WriteLine("");
@@ -155,70 +250,71 @@ namespace JogoDaVelha
 
         static char verifica_Status(char[,] matriz)
         {
-            if (matriz[0, 0] == 'X' && matriz[0, 0] == matriz[0, 1] && matriz[0, 0] == matriz[0, 2]) 
+            if (matriz[0, 0] == 'X' && matriz[0, 0] == matriz[0, 1] && matriz[0, 0] == matriz[0, 2])
             {
-                return ('1'); 
+                return ('1');
             }
-            else if (matriz[0, 0] == 'X' && matriz[0, 0] == matriz[1, 0] && matriz[0, 0] == matriz[2, 0]) 
+            else if (matriz[0, 0] == 'X' && matriz[0, 0] == matriz[1, 0] && matriz[0, 0] == matriz[2, 0])
             {
-                return ('1'); 
+                return ('1');
             }
             else if (matriz[0, 0] == 'X' && matriz[0, 0] == matriz[1, 1] && matriz[0, 0] == matriz[2, 2])
             {
-                return ('1'); 
+                return ('1');
             }
             else if (matriz[1, 0] == 'X' && matriz[1, 0] == matriz[1, 1] && matriz[1, 0] == matriz[1, 2])
             {
-                return ('1'); 
+                return ('1');
             }
             else if (matriz[2, 0] == 'X' && matriz[2, 0] == matriz[2, 1] && matriz[2, 0] == matriz[2, 2])
             {
-                return ('1'); 
+                return ('1');
             }
             else if (matriz[2, 0] == 'X' && matriz[2, 0] == matriz[1, 1] && matriz[2, 0] == matriz[0, 2])
             {
-                return ('1'); 
+                return ('1');
             }
             else if (matriz[0, 1] == 'X' && matriz[0, 1] == matriz[1, 1] && matriz[0, 1] == matriz[2, 1])
             {
-                return ('1'); 
+                return ('1');
             }
             else if (matriz[0, 2] == 'X' && matriz[0, 2] == matriz[1, 2] && matriz[0, 2] == matriz[2, 2])
             {
-                return ('1'); 
+                return ('1');
             }
             else if (matriz[0, 0] == 'O' && matriz[0, 0] == matriz[0, 1] && matriz[0, 0] == matriz[0, 2])
             {
-                return ('2'); 
+                return ('2');
             }
             else if (matriz[0, 0] == 'O' && matriz[0, 0] == matriz[1, 0] && matriz[0, 0] == matriz[2, 0])
             {
-                return ('2'); 
+                return ('2');
             }
             else if (matriz[0, 0] == 'O' && matriz[0, 0] == matriz[1, 1] && matriz[0, 0] == matriz[2, 2])
             {
-                return ('2'); 
+                return ('2');
             }
             else if (matriz[1, 0] == 'O' && matriz[1, 0] == matriz[1, 1] && matriz[1, 0] == matriz[1, 2])
             {
-                return ('2'); 
+                return ('2');
             }
             else if (matriz[2, 0] == 'O' && matriz[2, 0] == matriz[2, 1] && matriz[2, 0] == matriz[2, 2])
             {
-                return ('2'); 
+                return ('2');
             }
             else if (matriz[2, 0] == 'O' && matriz[2, 0] == matriz[1, 1] && matriz[2, 0] == matriz[0, 2])
             {
-                return ('2'); 
+                return ('2');
             }
             else if (matriz[0, 1] == 'O' && matriz[0, 1] == matriz[1, 1] && matriz[0, 1] == matriz[2, 1])
             {
-                return ('2'); 
+                return ('2');
             }
             else if (matriz[0, 2] == 'O' && matriz[0, 2] == matriz[1, 2] && matriz[0, 2] == matriz[2, 2])
             {
-                return ('2'); 
-            }else if(matriz[0,0] != '-' && matriz[0,1] != '-' && matriz[0,2] != '-' && matriz[1,0] != '-' && matriz[1,1] != '-' && matriz[1,2] != '-' && matriz[2,0] != '-' && matriz[2,1] != '-' && matriz[2,2] != '-')
+                return ('2');
+            }
+            else if (matriz[0, 0] != '-' && matriz[0, 1] != '-' && matriz[0, 2] != '-' && matriz[1, 0] != '-' && matriz[1, 1] != '-' && matriz[1, 2] != '-' && matriz[2, 0] != '-' && matriz[2, 1] != '-' && matriz[2, 2] != '-')
             {
                 return ('0');
             }
